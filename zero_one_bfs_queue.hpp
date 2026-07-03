@@ -75,8 +75,8 @@ public:
     }
 
     /**
-    * @brief Returns the next node with the highest priority without removing it.
-    * @throws std::out_of_range If both current and next buckets are entirely empty.
+    * @brief Returns the next node with highest priority without removing it.
+    * @throws std::out_of_range if queue is empty.
     */
     inline const T& top() const {
        if(!current.empty()) return current.back();
@@ -85,8 +85,8 @@ public:
     }
 
     /**
-    * @brief Returns the next node with the highest priority without removing it.
-    * @throws std::out_of_range If both current and next buckets are entirely empty.
+    * @brief Removes the node with the highest priority.
+    * @throws std::out_of_range if queue is empty.
     */
     inline void pop() {
        if(current.empty()) {
@@ -94,8 +94,7 @@ public:
           std::swap(current, next);
           total_cost++;
          }
-       if(!current.empty()) return current.pop_back();
-       throw std::out_of_range("Popping an empty queue.");
+       current.pop_back();
     }
     
     inline int committed_cost() const {
