@@ -1,0 +1,1 @@
+The 01-BFS is used for shortest path analysis where the cost of a node or edge is 0 or 1. Typically this is implemented with a deque based priority_queue that places high priority at the front and high priority at the back. Here a solution with two buckets is used, which is a more efficient approach because if avoids the complications of a deque.
