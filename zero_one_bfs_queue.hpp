@@ -41,7 +41,7 @@ private:
     int current_tier;         // The current global path cost level
 
 public:
-    zero_one_bfs_queue(int capacity = 0) : total_cost(0) {
+    two_tier_queue(int capacity = 0) : total_cost(0) {
         if (capacity > 0) {
             current.reserve(capacity);
             next.reserve(capacity);
