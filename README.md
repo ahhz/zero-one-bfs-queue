@@ -5,7 +5,7 @@ The 01-BFS is used for shortest path analysis where the cost of a node or edge i
 This repository includes `benchmark_01_bfs.cpp` to compare:
 
 - `two_tier_queue<int>`
-- `std::deque<int>` (via a small adapter)
+- `std::deque<int>`
 
 The benchmark is designed to be fair:
 

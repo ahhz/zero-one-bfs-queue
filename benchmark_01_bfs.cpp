@@ -40,19 +40,6 @@ struct Config {
     std::uint64_t seed = 1337;
 };
 
-template <typename T>
-class deque_queue {
-public:
-    void push_front(const T &val) { dq_.push_front(val); }
-    void push_back(const T &val) { dq_.push_back(val); }
-    bool empty() const { return dq_.empty(); }
-    const T &top() const { return dq_.front(); }
-    void pop() { dq_.pop_front(); }
-
-private:
-    std::deque<T> dq_;
-};
-
 struct Scratch {
     std::vector<int> dist;
     std::vector<int> touched;
@@ -119,8 +106,8 @@ std::uint64_t run_single_01_bfs(const Graph &g, int source, Scratch &scratch) {
     queue.push_front(source);
 
     while (!queue.empty()) {
-        const int u = queue.top();
-        queue.pop();
+        const int u = queue.front();
+        queue.pop_front();
         const int du = scratch.dist[u];
 
         const int begin = g.offsets[static_cast<std::size_t>(u)];
@@ -318,7 +305,7 @@ int main(int argc, char **argv) {
 
         for (const Workload &w : workloads) {
             auto [deque_timing, two_tier_timing] =
-                benchmark_case<deque_queue<int>, two_tier_queue<int>>(w, cfg);
+                benchmark_case<std::deque<int>, two_tier_queue<int>>(w, cfg);
 
             const double avg_deque_ms = deque_timing.total_ms / static_cast<double>(cfg.runs);
             const double avg_two_tier_ms = two_tier_timing.total_ms / static_cast<double>(cfg.runs);

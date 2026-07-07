@@ -29,7 +29,7 @@
 /**
  * @class two_tier_queue
  * @brief A priority queue that holds at most two tiers of priority
- * simultaneously. On pop(), if the current tier is exhausted, the next tier becomes 
+ * simultaneously. On pop_front(), if the current tier is exhausted, the next tier becomes 
  * the current tier.  
  */
 
@@ -88,6 +88,10 @@ public:
        throw std::out_of_range("Accessing top of an empty queue.");
     }
 
+    inline const T& front() const {
+        return top();
+    }
+
     /**
     * @brief Removes the node with the highest priority.
     * @throws std::out_of_range if queue is empty.
@@ -99,6 +103,10 @@ public:
           current_tier++;
          }
        current.pop_back();
+    }
+
+    inline void pop_front() {
+        pop();
     }
     
     inline int tier() const {
