@@ -52,3 +52,25 @@ Example:
 ```bash
 ./bench_01_bfs --cases 4 --base-nodes 50000 --node-step 25000 --edges-per-node 8 --sources 12 --warmup 2 --runs 10 --seed 42
 ```
+
+### Sample results
+
+From a Windows/MSVC run with:
+
+```text
+.\bench_01_bfs.exe --cases 2 --base-nodes 20000 --node-step 10000 --edges-per-node 6 --sources 6 --warmup 1 --runs 3 --seed 42
+```
+
+```text
+0-1 BFS benchmark (same workloads, alternating order, checksummed)
+cases=2 base_nodes=20000 node_step=10000 edges_per_node=6 sources=6 warmup=1 runs=3 seed=42
+
+workload                   deque(ms)      two_tier(ms)       speedup
+--------------------------------------------------------------------
+case_1_n20000                 13.014             8.758         1.49x
+case_2_n30000                 20.664            14.007         1.48x
+--------------------------------------------------------------------
+overall(avg sum)              33.678            22.765         1.48x
+```
+
+In this run, `two_tier_queue` was about `1.48x` faster than `std::deque` on the selected workloads.
